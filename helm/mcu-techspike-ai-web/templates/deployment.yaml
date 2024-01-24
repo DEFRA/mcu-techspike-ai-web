@@ -1,0 +1,8 @@
+{{- include "ffc-helm-library.deployment" (list . "mcu-techspike-ai-web.deployment") -}}
+{{- define "mcu-techspike-ai-web.deployment" -}}
+spec:
+  template:
+    spec:
+      containers:
+      - {{ include "ffc-helm-library.container" (list . "mcu-techspike-ai-web.container") }}
+{{- end -}}

@@ -2,11 +2,11 @@
 # that test output is saved to the host
 
 services:
-  ffc-template-node:
+  mcu-techspike-ai-web:
     build:
       target: development
-    image: ffc-template-node-development
-    container_name: ffc-template-node-test
+    image: mcu-techspike-ai-web-development
+    container_name: mcu-techspike-ai-web-test
     command: npm run test
     volumes:
       - ./app:/home/node/app

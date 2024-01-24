@@ -1,5 +1,5 @@
 services:
-  ffc-template-node:
+  mcu-techspike-ai-web:
     command: >
       sh -c "npm run test:watch"
     volumes:

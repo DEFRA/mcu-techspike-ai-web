@@ -1,30 +1,72 @@
 {
-  "name": "ffc-template-node",
+  "name": "mcu-techspike-ai-web",
   "version": "0.1.0",
-  "description": "description-of-project-goes-here",
-  "homepage": "https://github.com/DEFRA/ffc-template-node",
+  "description": "Web frontend for MCU techspike",
+  "homepage": "https://github.com/DEFRA/mcu-techspike-ai-web",
   "main": "app/index.js",
   "scripts": {
+    "build": "webpack",
+    "build:watch": "webpack --watch",
     "pretest": "npm run test:lint",
-    "test": "jest --runInBand --forceExit",
+    "test": "jest --runInBand",
     "test:watch": "jest --coverage=false --onlyChanged --watch --runInBand",
+    "test:watch:all": "npm-run-all --parallel test:watch build:watch",
     "test:lint": "standard",
     "test:debug": "node --inspect-brk=0.0.0.0 ./node_modules/jest/bin/jest.js --coverage=false --onlyChanged --watch --runInBand --no-cache",
-    "start:watch": "nodemon --inspect=0.0.0.0 --ext js --legacy-watch app/index.js",
-    "start:debug": "nodemon --inspect-brk=0.0.0.0 --ext js --legacy-watch app/index.js"
+    "start:watch": "npm-run-all --parallel build:watch start:nodemon",
+    "start:debug": "nodemon --inspect-brk=0.0.0.0 --ext css,js,njk --legacy-watch app/index.js",
+    "start:nodemon": "nodemon --inspect=0.0.0.0 --ext css,js,njk --legacy-watch app/index.js"
   },
   "author": "Defra",
   "contributors": [],
   "license": "OGL-UK-3.0",
   "dependencies": {
-    "@hapi/hapi": "21.3.2",
-    "applicationinsights": "2.9.1"
+    "@azure/ai-text-analytics": "^5.1.0",
+    "@azure/data-tables": "^13.2.2",
+    "@azure/identity": "2.0.5",
+    "@azure/msal-node": "1.14.6",
+    "@azure/openai": "^1.0.0-beta.7",
+    "@azure/storage-blob": "12.13.0",
+    "@hapi/catbox-redis": "6.0.2",
+    "@hapi/cookie": "11.0.2",
+    "@hapi/crumb": "8.0.1",
+    "@hapi/hapi": "20.2.1",
+    "@hapi/hoek": "9.1.1",
+    "@hapi/inert": "6.0.3",
+    "@hapi/vision": "6.1.0",
+    "@hapi/wreck": "^18.0.1",
+    "@hapi/yar": "10.1.1",
+    "applicationinsights": "2.3.5",
+    "date-fns": "^2.30.0",
+    "ffc-messaging": "^2.8.0",
+    "form-data": "^4.0.0",
+    "friendly-challenge": "^0.9.13",
+    "govuk-frontend": "^4.7.0",
+    "hapi-pino": "10.1.0",
+    "joi": "^17.10.2",
+    "libphonenumber-js": "^1.10.47",
+    "mammoth": "^1.6.0",
+    "nunjucks": "^3.2.4",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "jest": "29.7.0",
-    "jest-junit": "16.0.0",
-    "nodemon": "3.0.1",
-    "standard": "17.1.0"
+    "@hapi/catbox-memory": "5.0.1",
+    "blipp": "4.0.2",
+    "clean-webpack-plugin": "3.0.0",
+    "css-loader": "5.2.6",
+    "html-webpack-plugin": "5.3.1",
+    "jest": "27.5.1",
+    "jest-junit": "13.0.0",
+    "mini-css-extract-plugin": "1.6.0",
+    "nodemon": "^3.0.1",
+    "npm-run-all": "4.1.5",
+    "resolve-url-loader": "5.0.0",
+    "sass": "1.32.13",
+    "sass-loader": "11.1.1",
+    "standard": "16.0.4",
+    "style-loader": "2.0.0",
+    "webpack": "5.76.2",
+    "webpack-cli": "4.10.0"
   },
   "standard": {
     "globals": [
@@ -36,6 +78,12 @@
       "jest",
       "beforeAll",
       "afterAll"
+    ],
+    "ignore": [
+      "app/dist/**/*.js",
+      "test/acceptance/**/*.js",
+      "test/acceptance/**/*.mjs",
+      "test/acceptance/**/*.cjs"
     ]
   },
   "nodemonConfig": {

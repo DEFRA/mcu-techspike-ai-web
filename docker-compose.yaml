@@ -1,10 +1,29 @@
 services:
-  ffc-template-node:
+  mcu-techspike-ai-web:
     build:
       context: .
       target: production
-    image: ffc-template-node
-    container_name: ffc-template-node
+    image: mcu-techspike-ai-web
+    container_name: mcu-techspike-ai-web
     environment:
-      APPINSIGHTS_CLOUDROLE: ffc-template-node-local
+      APPINSIGHTS_CLOUDROLE: mcu-techspike-ai-web-local
       APPINSIGHTS_CONNECTIONSTRING: ${APPINSIGHTS_CONNECTIONSTRING}
+      AZURE_STORAGE_MCU_ACCOUNT_NAME: ${AZURE_STORAGE_MCU_ACCOUNT_NAME}
+      AZURE_STORAGE_USE_CONNECTION_STRING: "true"
+      AZURE_STORAGE_CREATE_CONTAINERS: "true"
+      AZURE_STORAGE_MCU_CONNECTION_STRING: ${AZURE_STORAGE_MCU_CONNECTION_STRING}
+      OPEN_AI_ENDPOINT: ${OPEN_AI_ENDPOINT}
+      OPEN_AI_API_KEY: ${OPEN_AI_API_KEY}
+      OPEN_AI_DEPLOYMENT_ID: ${OPEN_AI_DEPLOYMENT_ID}
+      TEXT_ANALYTICS_ENDPOINT: ${TEXT_ANALYTICS_ENDPOINT}
+      TEXT_ANALYTICS_API_KEY: ${TEXT_ANALYTICS_API_KEY}
+      SEARCH_ENDPOINT: ${SEARCH_ENDPOINT}
+      SEARCH_KEY: ${SEARCH_KEY}
+      SEARCH_INDEX: ${SEARCH_INDEX}
+      COOKIE_PASSWORD: who-likes-cookies-i-like-cookies-everybody-likes-cookies
+
+  mcu-techspike-ai-web-azurite:
+    image: mcr.microsoft.com/azure-storage/azurite:3.23.0
+    command: "azurite --skipApiVersionCheck --loose --blobHost 0.0.0.0 --tableHost 0.0.0.0"
+    labels:
+      com.docker.compose.pay.role: mcu-techspike-ai-web-azurite

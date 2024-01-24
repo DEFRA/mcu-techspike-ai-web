@@ -1,0 +1,33 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% extends '_layout.njk' %}
+
+{% block pageTitle %}{{ serviceName }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--m">Document Version: {{ name }}</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Version</th>
+          <th scope="col" class="govuk-table__header">Action</th>
+          <th scope="col" class="govuk-table__header">CreatedOn</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% for result in results %}
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">{{ result.version }}</th>
+            <td class="govuk-table__cell">{{ result.action }} </td>
+            <td class="govuk-table__cell">{{ result.createdOn }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

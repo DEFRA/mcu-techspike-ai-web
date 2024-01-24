@@ -2,14 +2,26 @@
 # to provide dependencies and expose ports for local testing
 
 services:
-  ffc-template-node:
+  mcu-techspike-ai-web:
     build:
       target: development
-    image: ffc-template-node-development
-    container_name: ffc-template-node-development
+    image: mcu-techspike-ai-web-development
+    container_name: mcu-techspike-ai-web-development
     ports:
       - "3000:3000"
       - "9229:9229"
     volumes:
       - ./app:/home/node/app
       - ./package.json:/home/node/package.json
+    depends_on:
+      - mcu-techspike-ai-web-azurite
+
+  mcu-techspike-ai-web-azurite:
+    volumes:
+      - azurite_data:/data
+    ports:
+      - "10020:10000"
+      - "10022:10002"
+
+volumes:
+  azurite_data:

@@ -1,0 +1,58 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% extends '_layout.njk' %}
+
+{% block pageTitle %}{{ serviceName }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-half">
+
+    <h1 class="govuk-heading-m">Version</h1>
+    <p>{{ version }} <a class="govuk-link" href="/document/version?name={{name}}">View versions</a></p>
+
+    <h1 class="govuk-heading-m">Overall Sentiment</h1>
+    <p>{{overallSentiment | safe}}</p>
+    <p>{{ confidenceScores }}</p>
+
+    <h1 class="govuk-heading-m">Summary</h1>
+    <p>
+      {{summary | safe}}
+    </p>
+
+    {% for entity in reconiseEntities.entities %}
+      <strong class="govuk-tag govuk-tag--blue">
+        {{entity.category}} - {{entity.text}}
+      </strong>
+    {% endfor %}
+  </div>
+  <div class="govuk-grid-column-one-half">
+    <h1 class="govuk-heading-m">Citations</h1>
+    <p>
+      {% for citation in citationsResponse.citations %}
+        <strong class="govuk-tag govuk-tag--blue">
+          {{citation.filePath}}
+        </strong>
+      {% endfor %}
+    </p>
+    <h1 class="govuk-heading-m">Potential Reply</h1>
+    {% for paragraph in response.paragraphs %}
+      <p>
+        <!--<form method="POST" action="/regenerate?name={{name}}" novalidate autocomplete="off">
+          <input type="hidden" name="index" value="{{loop.index0}}">
+          <textarea class="govuk-textarea" rows="3">
+            {{paragraph.paragraph}}
+          </textarea>
+          <input class="govuk-input" name="prompt" type="text">
+          {{ govukButton({
+            text: "regenerate"
+          }) }}
+        </form>-->
+        {{paragraph.paragraph}}
+      </p>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

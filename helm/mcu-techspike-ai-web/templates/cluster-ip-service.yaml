@@ -1,0 +1,3 @@
+{{- include "ffc-helm-library.cluster-ip-service" (list . "mcu-techspike-ai-web.cluster-ip-service") -}}
+{{- define "mcu-techspike-ai-web.cluster-ip-service" -}}
+{{- end -}}

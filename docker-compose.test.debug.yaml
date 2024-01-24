@@ -1,5 +1,5 @@
 services:
-  ffc-template-node:
+  mcu-techspike-ai-web:
     command: npm run test:debug
     ports:
       - "9229:9229"

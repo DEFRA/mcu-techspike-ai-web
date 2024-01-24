@@ -1,9 +1,9 @@
 environment: production
 environmentCode:
-name: ffc-template-node
-namespace: ffc-demo
-workstream: ffc-demo
-image: ffc-template-node
+name: mcu-techspike-ai-web
+namespace: mcu-techspike
+workstream: mcu-techspike
+image: mcu-techspike-ai-web
 
 labels:
   component: service
@@ -12,10 +12,10 @@ appInsights:
   connectionString:
 
 containerConfigMap:
-  name: ffc-template-node-config-map
+  name: mcu-techspike-ai-web-config-map
 
 containerSecret:
-  name: ffc-template-node-container-secret
+  name: mcu-techspike-ai-web-container-secret
   type: Opaque
 
 deployment: {}
