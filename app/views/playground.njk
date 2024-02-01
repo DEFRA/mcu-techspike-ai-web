@@ -40,9 +40,6 @@
           classes: "govuk-label--m",
           isPageHeading: true
         },
-        hint: {
-          text: "Playground for experimenting with system prompts."
-        },
         value: systemPrompt
       }) }}
       {{ govukTextarea({
@@ -52,9 +49,6 @@
           text: "Prompt",
           classes: "govuk-label--m",
           isPageHeading: true
-        },
-        hint: {
-          text: "Playground for experimenting with prompts."
         },
         value: prompt
       }) }}
@@ -102,7 +96,7 @@
           text: "Completion: " + usage.completionTokens + " Prompt: " + usage.promptTokens + " Total: " + usage.totalTokens
         },
         value: output,
-        rows: "16"
+        rows: "11"
       }) }}
       <h1 class="govuk-heading-m">Citations</h1>
     <p>

@@ -1,3 +1,4 @@
+const { admin } = require('../auth/permissions')
 const { getLatestUpdate } = require('../storage/document-table-repository')
 const { getDirectories, downloadFileToString, uploadText } = require('../storage/blob-repository')
 const { ask } = require('../ai-service/openai-service')
@@ -23,6 +24,7 @@ module.exports = [{
   method: 'GET',
   path: '/playground',
   options: {
+    auth: { scope: [admin] },
     handler: async (request, h) => {
       const response = await getResponse(request)
       return h.view('playground', response)
@@ -33,6 +35,7 @@ module.exports = [{
   method: 'POST',
   path: '/playground',
   options: {
+    auth: { scope: [admin] },
     handler: async (request, h) => {
       const { name: documentName, persona, systemPrompt, prompt, save: payloadSave, newVersion: payloadNewVersion } = request.payload
       let output = request.payload.output

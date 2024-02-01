@@ -1,4 +1,5 @@
 const { serviceName } = require('../config')
+const { mapAuth, getUser } = require('../auth')
 
 module.exports = {
   plugin: {
@@ -14,7 +15,9 @@ module.exports = {
 
           ctx.serviceName = serviceName
           ctx.serviceUrl = serviceUrl
-
+          ctx.auth = mapAuth(request)
+          ctx.user = getUser(request)
+          console.log(ctx.user)
           response.source.context = ctx
         }
 

@@ -1,4 +1,5 @@
 const Joi = require('joi')
+const authConfig = require('./auth')
 const blobConfig = require('./storage/blob')
 const tableConfig = require('./storage/table')
 const aiConfig = require('./ai')
@@ -83,6 +84,7 @@ if (result.error) {
 // Use the joi validated value
 const value = result.value
 
+value.authConfig = authConfig
 value.blobConfig = blobConfig
 value.tableConfig = tableConfig
 value.aiConfig = aiConfig

@@ -1,9 +1,11 @@
+const { admin } = require('../auth/permissions')
 const { getLatestUpdate } = require('../storage/document-table-repository')
 
 module.exports = {
   method: 'GET',
   path: '/document',
   options: {
+    auth: { scope: [admin] },
     handler: async (request, h) => {
       const result = await getLatestUpdate(request.query.name)
       const response = {

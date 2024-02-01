@@ -1,3 +1,4 @@
+const { admin } = require('../auth/permissions')
 const { Readable } = require('stream')
 const mammoth = require('mammoth')
 const { sentimentAnalysis, reconiseEntities, summariseConversation, generateResponse } = require('../ai-service')
@@ -12,6 +13,7 @@ module.exports = [{
   method: 'GET',
   path: uploadConstants.routes.document.get,
   options: {
+    auth: { scope: [admin] },
     handler: async (request, h) => {
       return h.view(uploadConstants.views.document, new ViewModel())
     }
@@ -21,6 +23,7 @@ module.exports = [{
   method: 'POST',
   path: uploadConstants.routes.document.post,
   options: {
+    auth: { scope: [admin] },
     payload: {
       maxBytes: (50 * 1024 * 1024) + 250,
       multipart: true,

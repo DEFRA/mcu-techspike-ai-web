@@ -1,3 +1,4 @@
+const { admin } = require('../auth/permissions')
 const { getLatestUpdate, addToTable } = require('../storage/document-table-repository')
 const { ask } = require('../ai-service/openai-service')
 
@@ -6,6 +7,7 @@ module.exports = [
     method: 'POST',
     path: '/regenerate',
     options: {
+      auth: { scope: [admin] },
       handler: async (request, h) => {
         const documentName = request.query.name
         const document = await getLatestUpdate(documentName)

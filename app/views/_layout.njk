@@ -5,7 +5,7 @@
 {% block head %}
   <!--[if !IE 8]><!-->
   
-  <link href="/static/css/core.45fbd5cb45f39a649daa.css" rel="stylesheet">
+  <link href="/static/css/core.18c21ec1a62738d17ba8.css" rel="stylesheet">
   
   <!--<![endif]-->
 
@@ -41,6 +41,9 @@
     },
     html: 'This is a new service – <a class="govuk-link" href="#">give feedback</a> to help us to improve it.'
   }) }}-->
+  {% if auth.isAuthenticated %}
+    <div class="govuk-body-s">Welcome {{user.username}} <a href="/logout" class="govuk-body govuk-link">Sign out</a></div>    
+  {% endif %}
 {% endblock %}
 
 {% block footer %}
@@ -69,6 +72,6 @@
 {% block bodyEnd %}
   {# Run JavaScript at end of the <body>, to avoid blocking the initial render. #}
 
-  <script src="/static/js/core.45fbd5cb45f39a649daa.js"></script>
+  <script src="/static/js/core.18c21ec1a62738d17ba8.js"></script>
 
 {% endblock %}

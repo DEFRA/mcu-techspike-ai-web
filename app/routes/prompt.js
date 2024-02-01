@@ -1,7 +1,9 @@
+const { admin } = require('../auth/permissions')
 module.exports = [{
   method: 'POST',
   path: '/prompt',
   options: {
+    auth: { scope: [admin] },
     handler: (request, h) => {
       const name = request.payload.name
       const persona = request.payload.persona
