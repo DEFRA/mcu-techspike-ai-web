@@ -3,10 +3,12 @@ const routes = [].concat(
   require('../routes/index'),
   require('../routes/healthy'),
   require('../routes/healthz'),
-  require('../routes/upload/upload-document'),
+  require('../routes/upload-document'),
   require('../routes/document'),
   require('../routes/document-version'),
-  require('../routes/regenerate')
+  require('../routes/regenerate'),
+  require('../routes/playground'),
+  require('../routes/prompt')
 )
 
 module.exports = {

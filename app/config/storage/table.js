@@ -4,14 +4,16 @@ const schema = Joi.object({
   useConnectionString: Joi.bool().default(false),
   connectionString: Joi.string().when('useConnectionString', { is: true, then: Joi.required(), otherwise: Joi.allow('').optional() }),
   storageAccount: Joi.string().required(),
-  documentTable: Joi.string().default('documents')
+  documentTable: Joi.string().default('documents'),
+  promptTable: Joi.string().default('prompts')
 })
 
 const config = {
   useConnectionString: process.env.AZURE_STORAGE_USE_CONNECTION_STRING,
   connectionString: process.env.AZURE_STORAGE_MCU_CONNECTION_STRING,
   storageAccount: process.env.AZURE_STORAGE_MCU_ACCOUNT_NAME,
-  documentTable: 'documents'
+  documentTable: 'documents',
+  promptTable: 'prompts'
 }
 
 const result = schema.validate(config, {

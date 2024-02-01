@@ -1,0 +1,117 @@
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% extends '_layout.njk' %}
+
+{% block pageTitle %}{{ serviceName }}{% endblock %}
+
+{% block content %}
+<form method="post" novalidate="novalidate" action="/prompt">
+  <input type="hidden" id="name" name="name" value="{{name}}">
+  <input type="hidden" id="persona" name="persona" value="persona1">
+  <div class="govuk-button-group">
+    <p>
+      {{persona}}
+    </p>
+    &nbsp;&nbsp;
+    <div class="govuk-form-group">
+      <select class="govuk-select" id="version" name="version">
+        {% set versions = versions %}
+        {% for versionOption in versions %}
+          <option value="{{versionOption}}" {% if version == versionOption %}selected{% endif %}>Version {{versionOption}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    &nbsp;&nbsp;
+    {{ govukButton({
+      text: "Change",
+      classes: "govuk-button--secondary"
+    }) }}
+  </div>
+</form>
+<form method="post" novalidate="novalidate" action="/playground?name={{name}}">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+      {{ govukTextarea({
+        name: "systemPrompt",
+        id: "systemPrompt",
+        label: {
+          text: "System Prompt",
+          classes: "govuk-label--m",
+          isPageHeading: true
+        },
+        hint: {
+          text: "Playground for experimenting with system prompts."
+        },
+        value: systemPrompt
+      }) }}
+      {{ govukTextarea({
+        name: "prompt",
+        id: "prompt",
+        label: {
+          text: "Prompt",
+          classes: "govuk-label--m",
+          isPageHeading: true
+        },
+        hint: {
+          text: "Playground for experimenting with prompts."
+        },
+        value: prompt
+      }) }}
+      <input type="hidden" id="name" name="name" value="{{name}}">
+      <input type="hidden" id="persona" name="persona" value="{{persona}}">
+      <input type="hidden" id="version" name="version" value="{{version}}">
+      {{ govukButton({
+        text: "Generate",
+        attributes: {
+          id: "generate",
+          "data-testid": "generate",
+          name: "generate",
+          value: "generate"
+        }
+      }) }}
+      {{ govukButton({
+        text: "Save",
+        attributes: {
+          id: "save",
+          "data-testid": "save",
+          name: "save",
+          value: "save"
+        }
+      }) }}
+      {{ govukButton({
+        text: "Create New Version",
+        attributes: {
+          id: "newVersion",
+          "data-testid": "newVersion",
+          name: "newVersion",
+          value: "newVersion"
+        }
+      }) }}
+    </div>
+    <div class="govuk-grid-column-one-half">
+      {{ govukTextarea({
+        name: "output",
+        id: "output",
+        label: {
+          text: "Output",
+          classes: "govuk-label--m",
+          isPageHeading: true
+        },
+        hint: {
+          text: "Completion: " + usage.completionTokens + " Prompt: " + usage.promptTokens + " Total: " + usage.totalTokens
+        },
+        value: output,
+        rows: "16"
+      }) }}
+      <h1 class="govuk-heading-m">Citations</h1>
+    <p>
+    {% for citation in citations %}
+      <strong class="govuk-tag govuk-tag--blue">
+        {{citation.filePath}}
+      </strong>
+    {% endfor %}
+    </p>
+    </div>
+  </form>
+{% endblock %}

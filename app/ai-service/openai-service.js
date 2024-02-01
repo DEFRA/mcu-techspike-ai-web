@@ -68,7 +68,6 @@ const ask = async (question, systemPrompt) => {
     const parsedCitations = JSON.parse(message.content).citations
 
     for (const citation of parsedCitations) {
-      console.log(citation)
       citations.push({ filePath: citation.filepath, metadata: citation.metadata, chunkId: citation.chunk_id })
     }
   }
@@ -77,7 +76,8 @@ const ask = async (question, systemPrompt) => {
     message: result.choices[0].message.content,
     citations: {
       citations
-    }
+    },
+    usage: result.usage
   }
 }
 

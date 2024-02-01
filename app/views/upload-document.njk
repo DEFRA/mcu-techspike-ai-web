@@ -1,8 +1,8 @@
 {% extends '_layout.njk' %}
 
+{% from "components/upload/macro.njk" import upload %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
-{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
-{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
 
 {% set pageHeading = "Upload document" %}
 
@@ -22,15 +22,19 @@
                 <li>Be no larger than 50 MB</li>
               </ul>
             </div>
-              {{ govukFileUpload(model) }}
-
-              {{ govukButton({
-                text: "Upload",
-                attributes: {
-                  id: "continue",
-                  "data-testid": "continue"
-                }
+            {{ govukCheckboxes({
+                name: "playground",
+                fieldset: {
+                  legend: {}
+                },
+                items: [
+                  {
+                    value: true,
+                    text: "Use in playground"
+                  }
+                ]
               }) }}
+            {{ upload(model) }}
           </div>
         </div>
       </div>

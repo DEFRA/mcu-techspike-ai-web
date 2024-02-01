@@ -1,6 +1,8 @@
 const { odata } = require('@azure/data-tables')
-const { tableClient } = require('./get-table-client')
+const { getTableClient } = require('./get-table-client')
+const { tableConfig } = require('../config')
 
+const tableClient = getTableClient(tableConfig.documentTable)
 const maxDate = new Date(8640000000000000)
 
 const invertTimestamp = (timestamp) => {

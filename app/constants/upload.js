@@ -3,11 +3,12 @@ const upload = {
     document: {
       get: '/upload',
       post: '/upload',
-      redirect: '/document'
+      redirectToDocument: '/document',
+      redirectToPlayground: '/playground'
     }
   },
   views: {
-    document: 'upload/upload-document'
+    document: 'upload-document'
   }
 }
 

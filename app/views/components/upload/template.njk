@@ -1,0 +1,12 @@
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{{ govukFileUpload(model) }}
+
+{{ govukButton({
+  text: "Upload",
+  attributes: {
+    id: "continue",
+    "data-testid": "continue"
+  }
+}) }}
