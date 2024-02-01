@@ -74,7 +74,7 @@ module.exports = [{
       }
 
       await addToTable(filename, documentsContent.value, null, null, null, null, null, null)
-      return h.redirect(`${uploadConstants.routes.document.redirectToPlayground}?name=${filename}&persona=persona1&version=1`)
+      return h.redirect(`${uploadConstants.routes.document.redirectToPersona}?name=${filename}`)
     }
   }
 }]

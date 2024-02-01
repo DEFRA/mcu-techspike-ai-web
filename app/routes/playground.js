@@ -16,7 +16,7 @@ const getResponse = async (request) => {
   const promptDirectory = `mcu/${persona}/${version}/`
   const systemPrompt = await downloadFileToString('system-prompt.txt', blobConfig.promptContainer, promptDirectory)
   const prompt = await downloadFileToString('prompt.txt', blobConfig.promptContainer, promptDirectory)
-  const versions = await getDirectories(blobConfig.promptContainer, 'mcu/persona1/', 'persona1')
+  const versions = await getDirectories(blobConfig.promptContainer, 'mcu/persona1/')
   return { name, systemPrompt, prompt, persona, version, versions: versions.persona.versions }
 }
 

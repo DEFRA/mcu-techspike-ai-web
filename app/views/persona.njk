@@ -1,0 +1,26 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% extends '_layout.njk' %}
+
+{% block pageTitle %}{{ serviceName }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <div class="govuk-cards--2__item govuk-card--dashboard">
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">Personas</caption>
+        <tbody class="govuk-table__body">
+          {% for persona in personas %}
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">{{ persona }}</th>
+              <td class="govuk-table__cell"><a href="/playground?name={{name}}&persona={{persona}}&version=1" class="govuk-link">Use</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+</div>
+
+{% endblock %}
