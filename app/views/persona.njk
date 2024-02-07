@@ -15,7 +15,7 @@
           {% for persona in personas %}
             <tr class="govuk-table__row">
               <th scope="row" class="govuk-table__header">{{ persona }}</th>
-              <td class="govuk-table__cell"><a href="/playground?name={{name}}&persona={{persona}}&version=1" class="govuk-link">Use</a></td>
+              <td class="govuk-table__cell"><a href="/upload?persona={{persona}}&version=1" class="govuk-link">Use</a></td>
             </tr>
           {% endfor %}
         </tbody>

@@ -1,0 +1,24 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% extends '_layout.njk' %}
+
+{% block pageTitle %}{{ serviceName }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <p>Persona: {{persona}} (Version: {{version}})</p>
+  </div>
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-half">
+    <h1 class="govuk-heading-m">Summary</h1>
+    <p>{{summary}}</p>
+  </div>
+  <div class="govuk-grid-column-one-half">
+    <h1 class="govuk-heading-m">Reply</h1>
+    <p>{{ reply | replace('\n', '<br>') | safe }}</p>
+  </div>
+</div>
+
+{% endblock %}

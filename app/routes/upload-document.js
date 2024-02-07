@@ -1,13 +1,14 @@
 const { admin } = require('../auth/permissions')
 const { Readable } = require('stream')
 const mammoth = require('mammoth')
-const { sentimentAnalysis, reconiseEntities, summariseConversation, generateResponse } = require('../ai-service')
+const { ask } = require('../ai-service/openai-service')
 const uploadConstants = require('../constants/upload')
 const { uploadFile } = require('../storage/blob-repository')
 const Joi = require('joi')
 const ViewModel = require('../models/upload')
 const { addToTable } = require('../storage/document-table-repository')
 const { blobConfig } = require('../config')
+const { downloadFileToString } = require('../storage/blob-repository')
 
 module.exports = [{
   method: 'GET',
@@ -15,7 +16,9 @@ module.exports = [{
   options: {
     auth: { scope: [admin] },
     handler: async (request, h) => {
-      return h.view(uploadConstants.views.document, new ViewModel())
+      const persona = request.query.persona ?? request.payload.persona
+      const version = request.query.version ?? request.payload.version
+      return h.view(uploadConstants.views.document, { ...new ViewModel(), persona, version })
     }
   }
 },
@@ -47,6 +50,8 @@ module.exports = [{
     },
     handler: async (request, h) => {
       const playground = request.payload.playground
+      const persona = request.payload.persona
+      const version = request.payload.version
       const filename = `mcu-document-${new Date().toISOString()}`
       const fileBuffer = request.payload.document._data
 
@@ -58,23 +63,16 @@ module.exports = [{
       const documentsContent = await mammoth.extractRawText({ buffer: fileBuffer })
 
       if (playground !== 'true') {
-        const textSummary = await summariseConversation(documentsContent.value)
-
-        const message = textSummary.message
-
-        const response = await generateResponse(documentsContent.value)
-        const documents = []
-        documents.push(message)
-
-        const sentiment = await sentimentAnalysis(documents)
-        const entities = await reconiseEntities(documents)
-
-        await addToTable(filename, documentsContent.value, message, response.message, JSON.stringify(response.citations), sentiment.overallSentiment, JSON.stringify(sentiment.confidenceScores), JSON.stringify(entities))
-        return h.redirect(`${uploadConstants.routes.document.redirectToDocument}?name=${filename}`)
+        const promptDirectory = `mcu/${persona}/${version}/`
+        const systemPrompt = await downloadFileToString('system-prompt.txt', blobConfig.promptContainer, promptDirectory)
+        const prompt = await downloadFileToString('prompt.txt', blobConfig.promptContainer, promptDirectory)
+        const output = await ask(`${prompt} ${documentsContent.value}`, systemPrompt)
+        await addToTable(filename, documentsContent.value, null, JSON.stringify(output), null, null, null, null)
+        return h.redirect(`${uploadConstants.routes.document.redirectToGenerateDocument}?name=${filename}&persona=${persona}&version=${version}`)
       }
 
       await addToTable(filename, documentsContent.value, null, null, null, null, null, null)
-      return h.redirect(`${uploadConstants.routes.document.redirectToPersona}?name=${filename}`)
+      return h.redirect(`${uploadConstants.routes.document.redirectToPlayground}?name=${filename}&persona=${persona}&version=${version}`)
     }
   }
 }]

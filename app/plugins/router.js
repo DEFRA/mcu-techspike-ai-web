@@ -13,7 +13,8 @@ const routes = [].concat(
   require('../routes/login'),
   require('../routes/logout'),
   require('../routes/dev-auth'),
-  require('../routes/persona')
+  require('../routes/persona'),
+  require('../routes/generate-document')
 )
 
 module.exports = {

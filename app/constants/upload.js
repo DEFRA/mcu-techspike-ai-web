@@ -4,6 +4,7 @@ const upload = {
       get: '/upload',
       post: '/upload',
       redirectToDocument: '/document',
+      redirectToGenerateDocument: '/generate-document',
       redirectToPlayground: '/playground',
       redirectToPersona: '/persona'
     }
