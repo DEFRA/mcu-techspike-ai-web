@@ -13,10 +13,22 @@
         <caption class="govuk-table__caption govuk-table__caption--m">Personas</caption>
         <tbody class="govuk-table__body">
           {% for persona in personas %}
-            <tr class="govuk-table__row">
-              <th scope="row" class="govuk-table__header">{{ persona }}</th>
-              <td class="govuk-table__cell"><a href="/upload?persona={{persona}}&version=1" class="govuk-link">Use</a></td>
-            </tr>
+            <form action="/persona" method="POST" class="govuk-form-group">
+              <tr class="govuk-table__row">
+                <th scope="row" class="govuk-table__header">{{ persona.persona }}</th>
+                <td class="govuk-table__cell">
+                  <select class="govuk-select" id="version" name="version">
+                    {% set versions = persona.versions %}
+                    {% for versionOption in versions %}
+                      <option value="{{versionOption}}" {% if version == versionOption %}selected{% endif %}>Version {{versionOption}}</option>
+                    {% endfor %}
+                  </select>
+                </td>
+                <td class="govuk-table__cell">
+                  <input type="hidden" name="persona" value="{{persona.persona}}">
+                  <input type="submit" value="Use" class="govuk-button">
+                </td>
+              </tr>
           {% endfor %}
         </tbody>
       </table>
