@@ -8,6 +8,23 @@ services:
     image: mcu-techspike-ai-web-development
     container_name: mcu-techspike-ai-web-test
     command: npm run test
+    environment:
+      AZURE_STORAGE_MCU_ACCOUNT_NAME: ${AZURE_STORAGE_MCU_ACCOUNT_NAME:-test}
+      AZURE_STORAGE_USE_CONNECTION_STRING: "true"
+      AZURE_STORAGE_CREATE_CONTAINERS: "true"
+      AZURE_STORAGE_MCU_CONNECTION_STRING: ${AZURE_STORAGE_MCU_CONNECTION_STRING:-test}
+      AZUREID_CLIENT_SECRET: ${AZUREID_CLIENT_SECRET:-test}
+      AZUREID_CLIENT_ID: ${AZUREID_CLIENT_ID:-test}
+      AZUREID_TENANT_ID: ${AZUREID_TENANT_ID:-test}
+      OPEN_AI_ENDPOINT: ${OPEN_AI_ENDPOINT:-test}
+      OPEN_AI_API_KEY: ${OPEN_AI_API_KEY:-test}
+      OPEN_AI_DEPLOYMENT_ID: ${OPEN_AI_DEPLOYMENT_ID:-test}
+      TEXT_ANALYTICS_ENDPOINT: ${TEXT_ANALYTICS_ENDPOINT:-test}
+      TEXT_ANALYTICS_API_KEY: ${TEXT_ANALYTICS_API_KEY:-test}
+      SEARCH_ENDPOINT: ${SEARCH_ENDPOINT:-test}
+      SEARCH_KEY: ${SEARCH_KEY:-test}
+      SEARCH_INDEX: ${SEARCH_INDEX:-test}
+      COOKIE_PASSWORD: who-likes-cookies-i-like-cookies-everybody-likes-cookies
     volumes:
       - ./app:/home/node/app
       - ./test:/home/node/test

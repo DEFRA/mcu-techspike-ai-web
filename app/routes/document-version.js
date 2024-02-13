@@ -10,7 +10,7 @@ module.exports = {
       const results = await getAllUpdates(request.query.name)
       const response = {
         name: request.query.name,
-        results: results
+        results
       }
       return h.view('document-version', response)
     }

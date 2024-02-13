@@ -24,7 +24,7 @@ const getDirectories = async (containerName, directory) => {
   const directories = await listDirectories(containerName, directory)
   console.log(directories)
   const json = directories.reduce((acc, path) => {
-    const [team, persona, version] = path.split('/')
+    const [, persona, version] = path.split('/')
     if (!acc.persona) {
       acc.persona = {
         name: persona,
