@@ -20,12 +20,31 @@ containerSecret:
 
 deployment: {}
 
+aadPodIdentity: true
+
+azureIdentity:
+  clientID: not-a-real-clientID
+  resourceID: not-a-real-resourceID
+
 container:
   requestMemory: 100Mi
   requestCpu: 100m
   limitMemory: 100Mi
   limitCpu: 100m
   port: 3000
+  authEnabled: false
+  mcuStorageAccountName: mcutechspike
+  azureStorageUseConnectionString: true
+  mcuStorageConnectionString: dummy
+  openAiEndpoint: dummy
+  openAiKey: dummy
+  openAiDeploymentId: dummy
+  textAnalyticsEndpoint: dummy
+  textAnalyticsKey: dummy
+  searchEndpoint: dummy
+  searchKey: dummy
+  searchIndex: dummy
+  cookiePassword: who-likes-cookies-i-like-cookies-everybody-likes-cookies
 
 livenessProbe:
   path: /healthz
@@ -42,3 +61,15 @@ readinessProbe:
   periodSeconds: 10
   failureThreshold: 3
   timeoutSeconds: 5
+
+ingress:
+  class: nginx
+  endpoint: dummy-endpoint
+  server: example.com
+
+azureAppRegistration:
+  enabled: true
+  clientId:
+  clientSecret:
+  tenantId:
+  redirectUrl: authenticate
