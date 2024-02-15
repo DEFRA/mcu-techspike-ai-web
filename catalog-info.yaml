@@ -1,0 +1,32 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "mcu-techspike-ai-web"
+  description: |
+    Ministerial Correspondence AI project created from template to support rapid delivery of microservices for FCP Platform. 
+    It contains the configuration needed to deploy a simple Hapi Node server to the Azure Kubernetes Platform.
+  annotations:
+    github.com/project-slug: DEFRA/mcu-techspike-ai-web
+    dev.azure.com/project: DEFRA-FFC
+    dev.azure.com/build-definition: mcu-techspike-ai-web
+    sonarqube.org/project-key: mcu-techspike-ai-web
+    grafana/dashboard-selector: "folderTitle == 'Managed Prometheus'"
+    backstage.io/kubernetes-id: mcu-techspike-ai-web
+  tags:
+    - node
+    - private
+    - back-end
+    - graphql
+  links:
+    - url: https://github.com/DEFRA/mcu-techspike-ai-web
+      title: View repository
+      icon: github
+    - url: https://sonarcloud.io/project/overview?id=mcu-techspike-ai-web
+      title: SonarCloud Analysis
+    - url: https://snyk.io/test/github/DEFRA/mcu-techspike-ai-web
+      title: Snyk Analysis
+spec:
+  type: backend
+  lifecycle: beta
+  owner: "group:default/fcp-data-access-layer-system"
+  system: "system:default/fcp-find-system"
