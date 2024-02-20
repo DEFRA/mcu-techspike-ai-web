@@ -28,5 +28,5 @@ metadata:
 spec:
   type: backend
   lifecycle: beta
-  owner: "group:default/fcp-data-access-layer-system"
-  system: "system:default/fcp-find-system"
+  owner: "group:default/mcu-ai"
+  system: "system:default/core-mcu-ai-system"
