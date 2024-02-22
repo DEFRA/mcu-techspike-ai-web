@@ -1,30 +1,17 @@
-environment: production
+environment: development
 environmentCode:
 name: mcu-techspike-ai-web
-namespace: mcu-techspike
-workstream: mcu-techspike
+namespace: coreia-mcu
+workstream: coreai-mcu
 image: mcu-techspike-ai-web
 
 labels:
-  component: service
+  component: web
 
 appInsights:
   connectionString:
 
-containerConfigMap:
-  name: mcu-techspike-ai-web-config-map
-
-containerSecret:
-  name: mcu-techspike-ai-web-container-secret
-  type: Opaque
-
 deployment: {}
-
-aadPodIdentity: true
-
-azureIdentity:
-  clientID: not-a-real-clientID
-  resourceID: not-a-real-resourceID
 
 container:
   requestMemory: 100Mi
@@ -32,19 +19,6 @@ container:
   limitMemory: 100Mi
   limitCpu: 100m
   port: 3000
-  authEnabled: false
-  mcuStorageAccountName: mcutechspike
-  azureStorageUseConnectionString: true
-  mcuStorageConnectionString: dummy
-  openAiEndpoint: dummy
-  openAiKey: dummy
-  openAiDeploymentId: dummy
-  textAnalyticsEndpoint: dummy
-  textAnalyticsKey: dummy
-  searchEndpoint: dummy
-  searchKey: dummy
-  searchIndex: dummy
-  cookiePassword: who-likes-cookies-i-like-cookies-everybody-likes-cookies
 
 livenessProbe:
   path: /healthz
@@ -62,14 +36,11 @@ readinessProbe:
   failureThreshold: 3
   timeoutSeconds: 5
 
+service:
+  port: 80
+  type: ClusterIP
+
 ingress:
   class: nginx
-  endpoint: dummy-endpoint
+  endpoint: mcu-techspike-ai-web
   server: example.com
-
-azureAppRegistration:
-  enabled: true
-  clientId:
-  clientSecret:
-  tenantId:
-  redirectUrl: authenticate

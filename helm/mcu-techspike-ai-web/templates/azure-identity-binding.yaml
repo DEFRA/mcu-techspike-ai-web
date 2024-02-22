@@ -1,5 +1,0 @@
-{{- if .Values.aadPodIdentity }}
-{{- include "ffc-helm-library.azure-identity-binding" (list . "mcu-techspike-ai-web.azure-identity-binding") -}}
-{{- end }}
-{{- define "mcu-techspike-ai-web.azure-identity-binding" -}}
-{{- end -}}

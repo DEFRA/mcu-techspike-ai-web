@@ -1,3 +1,3 @@
-{{- include "ffc-helm-library.azure-ingress" (list . "mcu-techspike-ai-web.ingress") -}}
+{{- include "adp-helm-library.azure-ingress" (list . "mcu-techspike-ai-web.ingress") -}}
 {{- define "mcu-techspike-ai-web.ingress" -}}
 {{- end -}}
