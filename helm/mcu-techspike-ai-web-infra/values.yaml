@@ -1,9 +1,13 @@
 storageAccounts:
   - name: 'mcutchspk'
-    tables: 
+    blobContainers:
       - name: 'documents'
         roleAssignments:
-          - roleName: 'TableDataContributor'
+          - roleName: 'BlobDataContributor'
       - name: 'prompts'
+        roleAssignments:
+          - roleName: 'BlobDataContributor'
+    tables: 
+      - name: 'documents'
         roleAssignments:
           - roleName: 'TableDataContributor'

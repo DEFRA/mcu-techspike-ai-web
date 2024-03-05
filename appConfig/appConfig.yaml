@@ -3,9 +3,7 @@
 - key: PORT
   value: "3000"
 - key: APPINSIGHTS_CLOUDROLE
-  value: "{{serviceName}}"  
-- key: AZURE_STORAGE_MCU_ACCOUNT_NAME
-  value: "sndadpinfst3401mcutchspk"  
+  value: "{{serviceName}}"
 #- key: container.openAiDeploymentId
 #  value: "{{servicename}}-container-openaideploymentid"
 #  type: "keyvault"
