@@ -1,4 +1,9 @@
-namespaceQueues:
-  - name: backend
-    roleAssignments:
-     - roleName: 'QueueSender'
+storageAccounts:
+  - name: 'mcutchspk'
+    tables: 
+      - name: 'documents'
+        roleAssignments:
+          - roleName: 'TableDataContributor'
+      - name: 'prompts'
+        roleAssignments:
+          - roleName: 'TableDataContributor'

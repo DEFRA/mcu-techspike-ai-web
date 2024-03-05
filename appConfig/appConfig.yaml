@@ -4,11 +4,8 @@
   value: "3000"
 - key: APPINSIGHTS_CLOUDROLE
   value: "{{serviceName}}"  
-- key: container.mcuStorageAccountName
-  value: "mcu-techspike-ai-web"  
-#- key: container.mcuStorageConnectionString
-#  value: "{{servicename}}-container-mcuStorageConnectionString"
-#  type: "keyvault"
+- key: AZURE_STORAGE_MCU_ACCOUNT_NAME
+  value: "sndadpinfst3401mcutchspk"  
 #- key: container.openAiDeploymentId
 #  value: "{{servicename}}-container-openaideploymentid"
 #  type: "keyvault"
