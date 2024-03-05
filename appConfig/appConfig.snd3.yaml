@@ -2,4 +2,4 @@
   value: "{{servicename}}-APPINSIGHTS-CONNECTIONSTRING"
   type: "keyvault"
 - key: AZURE_STORAGE_MCU_ACCOUNT_NAME
-  value: "sndadpinfst3401mcutchspk"  
+  value: "sndadpinfst3401mcutchspk"
