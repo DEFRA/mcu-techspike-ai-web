@@ -56,3 +56,9 @@ extends:
         - mcu-techspike-ai-web-<environment>
       variables:  # FILTER FOR SECRETS IN THE VARIABLE GROUP
         - mcu-techspike-ai-web-APPINSIGHTS-CONNECTIONSTRING
+        - mcu-techspike-ai-web-container-openaideploymentid
+        - mcu-techspike-ai-web-container-openaiendpoint
+        - mcu-techspike-ai-web-container-openaikey
+        - mcu-techspike-ai-web-container-searchendpoint
+        - mcu-techspike-ai-web-container-searchindex
+        - mcu-techspike-ai-web-container-searchkey
