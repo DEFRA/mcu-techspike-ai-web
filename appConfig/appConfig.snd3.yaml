@@ -27,3 +27,6 @@
   value: "test"
 - key: TEXT_ANALYTICS_API_KEY
   value: "test"
+- key: COOKIE_PASSWORD
+  value: "{{servicename}}-cookiepassword"
+  type: "keyvault"
