@@ -1,9 +1,1 @@
-{{- include "ffc-helm-library.container-config-map" (list . "mcu-techspike-ai-web.config-map") -}}
-{{- define "mcu-techspike-ai-web.config-map" -}}
-data:
-  NODE_ENV: {{ quote .Values.environment }}
-  PORT: {{ quote .Values.container.port }}
-  APPINSIGHTS_CLOUDROLE: {{ quote .Values.name }}
-  AZURE_STORAGE_USE_CONNECTION_STRING: {{ quote .Values.container.azureStorageUseConnectionString }}
-  AUTHENTICATION_ENABLED: {{ quote .Values.container.authEnabled }}
-{{- end -}}
+{{- include "adp-helm-library.azure-config-service-map" . -}}

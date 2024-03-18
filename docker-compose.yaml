@@ -24,7 +24,7 @@ services:
       SEARCH_ENDPOINT: ${SEARCH_ENDPOINT}
       SEARCH_KEY: ${SEARCH_KEY}
       SEARCH_INDEX: ${SEARCH_INDEX}
-      COOKIE_PASSWORD: who-likes-cookies-i-like-cookies-everybody-likes-cookies
+      COOKIE_PASSWORD: ${COOKIE_PASSWORD:-who-likes-cookies-i-like-cookies-everybody-likes-cookies}
 
   mcu-techspike-ai-web-azurite:
     image: mcr.microsoft.com/azure-storage/azurite:3.23.0
