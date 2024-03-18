@@ -23,10 +23,10 @@
 - key: SEARCH_INDEX
   value: "{{servicename}}-searchindex"
   type: "keyvault"
+- key: COOKIE_PASSWORD
+  value: "{{servicename}}-cookiepassword"
+  type: "keyvault"
 - key: TEXT_ANALYTICS_ENDPOINT
   value: "test"
 - key: TEXT_ANALYTICS_API_KEY
   value: "test"
-- key: COOKIE_PASSWORD
-  value: "{{servicename}}-cookiepassword"
-  type: "keyvault"
