@@ -37,8 +37,8 @@ resources:
 extends:
   template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
   parameters:
-    projectName: "mcu-techspike-ai-web"
     serviceName: "mcu-techspike-ai-web"
+    teamName: "crai-mcu"
     deployFromFeature: ${{ parameters.deployFromFeature }}
     appBuildConfig:
       appFrameworkType: "nodejs"    
@@ -54,11 +54,3 @@ extends:
       # TO BE ADDED IF THERE ARE ANY KEYVAULT REFERENCES IN APP CONFIG
       variableGroups: 
         - mcu-techspike-ai-web-<environment>
-      variables:  # FILTER FOR SECRETS IN THE VARIABLE GROUP
-        - mcu-techspike-ai-web-APPINSIGHTS-CONNECTIONSTRING
-        - mcu-techspike-ai-web-openaideploymentid
-        - mcu-techspike-ai-web-openaiendpoint
-        - mcu-techspike-ai-web-openaikey
-        - mcu-techspike-ai-web-searchendpoint
-        - mcu-techspike-ai-web-searchindex
-        - mcu-techspike-ai-web-searchkey
