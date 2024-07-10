@@ -31,5 +31,6 @@ module.exports = {
   ],
   testEnvironment: 'node',
   testPathIgnorePatterns: [],
+  transform: {},
   verbose: true
 }
